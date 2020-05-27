@@ -15,14 +15,14 @@
 
     <div class="row">
         <% campgrounds.forEach(ground => { %>
-            <div class="col-sm-6 col-md-3">
-                <div class="card" style="width: 18rem;">
+            <div class="col-sm-6 col-md-3 d-flex">
+                <div class="card">
                     <img src="<%= ground.image %>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">
                             <%= ground.name %>
                         </h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="campgrounds/<%= ground._id %>" class="btn btn-outline-info">Show More</a>
                     </div>
                 </div>
             </div>
