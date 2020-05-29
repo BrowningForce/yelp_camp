@@ -1,13 +1,19 @@
-const express     = require("express"),
-      app         = express(),
-      bodyParser  = require("body-parser"),
-      mongoose    = require("mongoose"),
-      Campground  = require("./models/campground"),
-      seedDB      = require('./seeds');
+const express          = require("express"),
+      app              = express(),
+      bodyParser       = require("body-parser"),
+      methodOverride   = require('method-override'),
+      expressSanitizer = require('express-sanitizer'),
+      mongoose         = require("mongoose"),
+      Campground       = require("./models/campground"),
+      Comment          = require('./models/comment'),
+      seedDB           = require('./seeds');
 
 seedDB();
 app.set("view engine", "ejs");
+app.use(methodOverride('_method'));
+app.use(express.static('/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(expressSanitizer());
 mongoose.connect("mongodb://localhost:27017/yelp_camp", {
   useUnifiedTopology: true,
   useNewUrlParser: true,
@@ -44,7 +50,6 @@ app.post("/campgrounds", async (req, res) => {
         name,
         image,
         description,
-        // comments: [],
       }
     );
     res.redirect('/campgrounds');
@@ -60,6 +65,27 @@ app.get("/campgrounds/:id", async (req, res) => {
     const campground = await Campground.findById(req.params.id).populate('comments');
       // render SHOW template for found campground
     res.render("show", { campground });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// =====================
+// ADD COMMENTS ROUTE
+// =====================
+
+app.put('/campgrounds/:id', async (req, res) => {
+  const { text, author } = req.body.comment;
+  try {
+    const campground = await Campground.findById(req.params.id);
+    const comment = await Comment.create({
+      text: req.sanitize(text),
+      author: req.sanitize(author)
+    });
+    
+    campground.comments.push(comment);
+    campground.save();
+    res.redirect(`/campgrounds/${req.params.id}`);
   } catch (error) {
     console.log(error);
   }
