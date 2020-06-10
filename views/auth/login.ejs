@@ -1,6 +1,8 @@
-<%- include('partials/header') %>
+<%- include('../partials/header') %>
 
 <h1>Login Form</h1>
+
+<p>Please log in to be able to add campgrounds, leave reviews and more!</p>
 
 <form action="/login" method="post">
     <div class="form-group">
@@ -14,4 +16,9 @@
     <button class="btn btn-primary">Log In</button>
 </form>
 
-<%- include('partials/footer') %>
+<h4>
+    Don't have an account yet? <br/ >
+    <a href="/register">Create one right now!</a>
+</h4>
+
+<%- include('../partials/footer') %>

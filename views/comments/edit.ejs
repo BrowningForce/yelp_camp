@@ -1,0 +1,4 @@
+<form class="editCommentBox d-none" action="/campgrounds/<%= campground._id %>/reviews/<%= comment._id %>?_method=PUT" method="POST">
+    <textarea name="text" id="text" class="form-group w-100 my-3"><%= comment.text %></textarea>
+    <button class="btn btn-sm btn-primary">Save Changes</button>
+</form>

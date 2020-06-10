@@ -1,0 +1,9 @@
+<div class="container mt-3">
+    <h4 class="text-center">Leave a review</h4>
+    <form action="/campgrounds/<%= campground._id %>/reviews/new" method="POST">
+        <div class="form-group">
+            <textarea class="form-control" name="text" placeholder="Add comment..."></textarea>
+        </div>
+        <button class="btn btn-primary">Add Review</button>
+        </form>
+</div>

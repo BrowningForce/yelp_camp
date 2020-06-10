@@ -1,0 +1,50 @@
+<%- include('../partials/header') %>
+<div class="container">
+    <div class="row">
+        <aside class="col-3">
+            <p class="lead">YelpCamp</p>
+            <ul class="list-group">
+                <li class="list-group-item active">Category 1</li>
+                <li class="list-group-item">Category 2</li>
+                <li class="list-group-item">Category 3</li>
+            </ul>
+        </aside>
+        <main class="col-9">
+            <article class="card">
+                <img src="<%= campground.image %>" alt="<%= campground.name %>">
+                <div class="card-body">
+                    <div class="card-title">
+                        <h1 class="d-inline"><a href=""><%= campground.name %></a></h1>
+                        <span class="float-right">$9.99/night</span>
+                    </div>
+                    <p class="card-text"><%= campground.description || 'No description provided!' %></p>
+                    <p><em>Submitted by <%= campground.author.username %></em></p>
+
+                    <% if (currentUser && campground.author.id.equals(currentUser._id)) { %>
+                        <div class="d-flex justify-content-between">
+                            <a class="btn btn-warning w-25" href="/campgrounds/<%= campground._id %>/edit">Edit Campground</a>
+                            <form class="d-inline float-right" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="post">
+                                <button class="btn btn-danger">Delete Campground</button>
+                            </form>
+                        </div>
+                    <% } %>
+                    <hr>
+                    <div class="container">
+                        <h3>Reviews</h3>
+                        <ul class="list-unstyled">
+                            <% for (let comment of campground.comments) { %>
+                                <%- include('../comments/show', { comment }) %>
+                            <% } %>
+                        </ul>
+                    </div>
+                    <hr>
+                    <%- include('../comments/review') %>
+                </div>
+                
+            </article>
+        </main>
+    </div>
+</div>
+
+<script src="/assets/scripts/buttonHandler.js"></script>
+<%- include('../partials/footer') %>

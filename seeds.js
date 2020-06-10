@@ -12,8 +12,7 @@ const seeds = [
     {
         name: 'Clear Sky',
         image: 'https://images.unsplash.com/photo-1510312305653-8ed496efae75?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60',
-        description: `Enim ipsum alcatra in chuck. Laboris porchetta do, prosciutto pork beef ribs alcatra boudin chuck fatback pastrami ribeye ullamco veniam tongue. Ut bresaola 
-                      ham hock drumstick, fatback dolore shank. In pork chop kevin bresaola tongue, quis excepteur beef ut veniam esse ham jerky beef ribs shoulder.`
+        description: `Enim ipsum alcatra in chuck. Laboris porchetta do, prosciutto pork beef ribs alcatra boudin chuck fatback pastrami ribeye ullamco veniam tongue. Ut bresaola ham hock drumstick, fatback dolore shank. In pork chop kevin bresaola tongue, quis excepteur beef ut veniam esse ham jerky beef ribs shoulder.`
     },
     {
         name: 'Mountain Lake',
